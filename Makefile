@@ -13,6 +13,7 @@ MCU=atmega328
 
 # Target file name (without extension).
 TARGET = libmicro-avr
+TARGETDIR = /usr/local/
 
 ############# Don't need to change below here for most purposes (Elliot)
 
@@ -21,7 +22,7 @@ TARGET = libmicro-avr
 OPT = s
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = src/mean.c
+SRC = 
 
 # List Assembler source files here.
 # Make them always end in a capital .S. Files ending in a lowercase .s
@@ -74,11 +75,11 @@ ASFLAGS = -Wa,-adhlns=$(<:.S=.lst),-gstabs
 
 # Define programs and commands.
 SHELL = bash
-CC = avr-gcc
-AR = avr-ar
+CC = /usr/local/avr/bin/avr-gcc
+AR = /usr/local/avr/bin/avr-ar
 
 REMOVE = rm -f
-COPY = cp
+COPY = cp -f
 
 # Define Messages
 # English
@@ -89,6 +90,7 @@ MSG_LINKING = Linking:
 MSG_COMPILING = Compiling:
 MSG_ASSEMBLING = Assembling:
 MSG_ARCHIVING = Creating Archive:
+MSG_INSTALLING = Installing:
 MSG_CLEANING = Cleaning project:
 
 
@@ -136,9 +138,15 @@ gccversion :
 archive: $(OBJ)
 	@echo
 	@echo $(MSG_ARCHIVING) $<
-	$(AR) $(ALL_AR) $(TARGET).a $(OBJ)
+	$(AR) $(ALL_AR) lib/$(TARGET).a $(OBJ)
 
-
+# Install the static library and the include files
+install : archive
+	@echo
+	@echo $(MSG_INSTALLING) $<
+	$(COPY) lib/*.a $(TARGETDIR)lib
+	mkdir -p $(TARGETDIR)include/libmicro-avr/
+	$(COPY) include/*.h $(TARGETDIR)include/libmicro-avr/
 
 # Target: clean project.
 clean: begin clean_list finish end
