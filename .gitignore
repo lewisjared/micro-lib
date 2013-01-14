@@ -15,3 +15,12 @@
 *.exe
 *.out
 *.app
+
+# Project Files
+.cproject
+.project
+*~
+
+# Generated Documentation
+doc/html
+doc/latex
