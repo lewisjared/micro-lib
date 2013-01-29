@@ -4,23 +4,21 @@
 # Libraries
 *.lib
 *.a
-
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so
 *.so.*
 *.dylib
-
 # Executables
 *.exe
 *.out
 *.app
-
 # Project Files
 .cproject
 .project
 *~
-
 # Generated Documentation
 doc/html
 doc/latex
+/Debug/
+/.settings/
