@@ -20,7 +20,7 @@
 #endif
 
 /**
- * Defines bool in a standard way
+ * Defines bool in a standard way TEST
  */
 #ifdef C99
 	#include <stdbool.h>
