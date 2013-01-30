@@ -11,6 +11,8 @@
 
 #include "circular_buffer.h"
 
+#include <stdlib.h>
+
 
 circ_buffer circ_init(uint8_t length)
 {
