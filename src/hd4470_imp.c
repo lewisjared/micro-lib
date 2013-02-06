@@ -6,6 +6,19 @@
  */
 
 #include "hd4470_imp.h"
+#include "misc.h"
+
+#include "util/delay.h"
+
+#ifdef HD4470_4BIT_MODE
+#define HD4470_NUM_DATA 4
+#else
+#define HD4470_NUM_DATA 8
+#endif
+
+#define DELAY_LENGTH_US 100
+#define RS_DATA 1
+#define RS_CMD 0
 
 //Static local variables
 static pin_struct s_RS;
@@ -22,9 +35,51 @@ void hd4470_init_imp(pin_struct RS, pin_struct RW, pin_struct EN, pin_struct* da
 	s_data = data;
 
 	//Set the direction of the pins
+	SET_OUT(RS);
+	SET_OUT(RW);
+	SET_OUT(EN);
+
+	for (int i = 0; i < HD4470_NUM_DATA; i++)
+		SET_OUT(data[i]);
 }
 
 void hd4470_clock_in()
 {
+	SET_HIGH(s_EN);
+	//@todo check what this should be
+	_delay_us(DELAY_LENGTH_US);
+	SET_LOW(s_EN);
+}
 
+void hd4470_send_byte(uint8_t data)
+{
+#ifdef HD4470_4BIT_MODE
+	//Write low bits first
+	hd4470_send_nibble(data);
+	//Next send the high bits
+	hd4470_send_nibble((0xF0 & data) >> 4);
+#else
+	//8 bit mode
+	// Write 8 bits to the buffer
+	set_pins(s_data, data, 8);
+	hd4470_clock_in();
+#endif
+}
+
+void hd4470_send_nibble(data)
+{
+	set_pins(s_data,0x0F & data, 4);
+	hd4470_clock_in();
+}
+
+void hd4470_send_data(uint8_t data)
+{
+	set_pin(s_RS, RS_DATA);
+	hd4470_send_byte(data);
+}
+
+void hd4470_send_cmd(uint8_t data)
+{
+	set_pin(s_RS, RS_CMD);
+	hd4470_send_byte(data);
 }

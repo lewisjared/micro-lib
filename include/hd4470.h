@@ -22,8 +22,6 @@
 
 #include "pins.h"
 
-#define HD4470_DUMB_WAIT
-
 /**
  * Initialises the pins and puts the HD4470 in a state to be written too
  * @param RS Reset Pin

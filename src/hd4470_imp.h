@@ -31,24 +31,24 @@ void hd4470_clock_in();
  */
 void hd4470_send_byte(uint8_t data);
 
-
 #ifdef HD4470_4BIT_MODE
-/**
- * Sends the lower 4 bits of data to the device. Only needed if the device is
- * in 4 bit mode.
- * @param data Nibble of data
+/** Send a nibble to the device
+ * @param data Nibble in lower half of data
  */
 void hd4470_send_nibble(uint8_t data);
-#endif //HD4470_4BIT_MODE
-/**
- * Sets the device to be ready for data
- */
-void hd4470_set_data();
+#endif
 
 /**
- * Sets the device to be ready for a command
+ * Sends 8 bits of data to the device
+ * @param data Data to be sent
  */
-void hd4470_set_CMD();
+void hd4470_send_data(uint8_t data);
+
+/**
+ * Sends a command to the device
+ * @param data Command to be sent
+ */
+void hd4470_send_CMD(uint8_t data);
 
 
 
