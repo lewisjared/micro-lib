@@ -75,12 +75,21 @@ bool get_state(pin_struct pin);
  */
 void set_output(pin_struct pin, bool isOutput);
 
+///Defines for ease of access
+#define SET_OUT(pin)	set_output(pin,True)
+#define SET_IN(pin)		set_output(pin,false)
+
 /**
  * Sets the state of a single pin to be either high or low
  * @param pin Pointer to the pin_struct
  * @param state State to set the pin (True == high)
  */
 void set_pin(pin_struct pin, bool state);
+
+///Defines for ease of setting pin values
+#define SET_HIGH(pin) 	set_output(pin,true)
+#define SET_LOW(pin)	set_output(pin,false)
+
 
 /**
  * Sets the state of an array of n pins to value
