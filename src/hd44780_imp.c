@@ -24,7 +24,7 @@
 static pin_struct s_RS;
 static pin_struct s_RW;
 static pin_struct s_EN;
-static pin_struct s_data;
+static pin_struct* s_data;
 
 void hd44780_init_imp(pin_struct RS, pin_struct RW, pin_struct EN, pin_struct* data)
 {
@@ -66,7 +66,7 @@ void hd44780_send_byte(uint8_t data)
 #endif
 }
 
-void hd44780_send_nibble(data)
+void hd44780_send_nibble(uint8_t data)
 {
 	set_pins(s_data,0x0F & data, 4);
 	hd44780_clock_in();

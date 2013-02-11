@@ -11,6 +11,9 @@
 #ifndef HD44780_IMP_H_
 #define HD44780_IMP_H_
 
+#include "misc.h"
+#include "pins.h"
+
 
 /**
  * Initialises the pins to the correct type etc

@@ -76,7 +76,7 @@ bool get_state(pin_struct pin);
 void set_output(pin_struct pin, bool isOutput);
 
 ///Defines for ease of access
-#define SET_OUT(pin)	set_output(pin,True)
+#define SET_OUT(pin)	set_output(pin,true)
 #define SET_IN(pin)		set_output(pin,false)
 
 /**
