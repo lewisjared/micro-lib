@@ -11,8 +11,8 @@
 #ifndef MISC_H_
 #define MISC_H_
 
-#define HD4470_SMART_WAIT
-#define HD4470_4BIT_MODE
+#define HD44780_SMART_WAIT
+#define HD44780_4BIT_MODE
 
 #include <stdint.h>
 
