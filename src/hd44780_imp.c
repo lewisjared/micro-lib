@@ -78,7 +78,7 @@ void hd44780_send_data(uint8_t data)
 	hd44780_send_byte(data);
 }
 
-void hd44780_send_cmd(uint8_t data)
+void hd44780_send_CMD(uint8_t data)
 {
 	set_pin(s_RS, RS_CMD);
 	hd44780_send_byte(data);
